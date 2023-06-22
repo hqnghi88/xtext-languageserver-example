@@ -1,2 +1,17 @@
 /* this is a definition in another file */
 Hello Other!
+model s
+global {
+    init{
+        create S;
+    }
+
+}
+species S{
+aspect{
+    draw circle(1);
+}
+}
+experiment ss{
+    output{}
+}
