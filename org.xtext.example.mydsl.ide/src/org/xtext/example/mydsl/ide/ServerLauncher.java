@@ -33,11 +33,11 @@ public class ServerLauncher {
 	private static boolean IS_DEBUG = true;
 
 	public static void main(final String[] args) throws Exception {
-//		InputStream stdin = System.in;
-//		PrintStream stdout = System.out;
-//		ServerLauncher.redirectStandardStreams();
-//		ServerLauncher launcher = Guice.createInjector(new ServerModule()).getInstance(ServerLauncher.class);
-//		launcher.start(stdin, stdout);
+		InputStream stdin = System.in;
+		PrintStream stdout = System.out;
+		ServerLauncher.redirectStandardStreams();
+		ServerLauncher launcher = Guice.createInjector(new ServerModule()).getInstance(ServerLauncher.class);
+		launcher.start(stdin, stdout);
 	}
 
 	@Inject
