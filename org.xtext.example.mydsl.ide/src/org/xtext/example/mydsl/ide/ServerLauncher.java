@@ -33,11 +33,11 @@ public class ServerLauncher {
 	private static boolean IS_DEBUG = true;
 
 	public static void main(final String[] args) throws Exception {
-		InputStream stdin = System.in;
-		PrintStream stdout = System.out;
-		ServerLauncher.redirectStandardStreams();
-		ServerLauncher launcher = Guice.createInjector(new ServerModule()).getInstance(ServerLauncher.class);
-		launcher.start(stdin, stdout);
+//		InputStream stdin = System.in;
+//		PrintStream stdout = System.out;
+//		ServerLauncher.redirectStandardStreams();
+//		ServerLauncher launcher = Guice.createInjector(new ServerModule()).getInstance(ServerLauncher.class);
+//		launcher.start(stdin, stdout);
 	}
 
 	@Inject
@@ -48,7 +48,7 @@ public class ServerLauncher {
 		String id = ServerLauncher.class.getName() + "-"
 				+ new Timestamp(System.currentTimeMillis()).toString().replaceAll(" ", "_");
 		Launcher<LanguageClient> launcher = Launcher.createLauncher(languageServer, LanguageClient.class, in, out, true,
-				new PrintWriter(new FileOutputStream((("/Users/dietrich/logs/xxx-" + id) + ".log")), true));
+				new PrintWriter(new FileOutputStream(("log.txt")), true));
 		languageServer.connect(launcher.getRemoteProxy());
 		Future<Void> future = launcher.startListening();
 		System.err.println("started.");
@@ -62,9 +62,9 @@ public class ServerLauncher {
 		String id = ServerLauncher.class.getName() + "-"
 				+ new Timestamp(System.currentTimeMillis()).toString().replaceAll(" ", "_");
 		if (ServerLauncher.IS_DEBUG) {
-			FileOutputStream stdFileOut = new FileOutputStream((("/Users/dietrich/logs/out-" + id) + ".log"));
+			FileOutputStream stdFileOut = new FileOutputStream(("log.log"));
 			System.setOut(new PrintStream(stdFileOut, true));
-			FileOutputStream stdFileErr = new FileOutputStream((("/Users/dietrich/logs/error-" + id) + ".log"));
+			FileOutputStream stdFileErr = new FileOutputStream(("log.log"));
 			System.setErr(new PrintStream(stdFileErr, true));
 		} else {
 			System.setOut(new PrintStream(new ByteArrayOutputStream()));

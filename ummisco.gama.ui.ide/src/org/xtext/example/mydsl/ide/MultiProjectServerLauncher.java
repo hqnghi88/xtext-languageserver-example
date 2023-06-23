@@ -51,7 +51,7 @@ public class MultiProjectServerLauncher {
 	public static void redirectStandardStreams() throws Exception {
 		ByteArrayInputStream _byteArrayInputStream = new ByteArrayInputStream(new byte[0]);
 		System.setIn(_byteArrayInputStream);
-		final String id = org.eclipse.xtext.ide.server.ServerLauncher.class.getName() + "-"
+		final String id = org.xtext.example.mydsl.ide.ServerLauncher.class.getName() + "-"
 				+ new Timestamp(System.currentTimeMillis());
 		if (MultiProjectServerLauncher.IS_DEBUG) {
 			FileOutputStream stdFileOut = new FileOutputStream((("out-" + id) + ".log"));
