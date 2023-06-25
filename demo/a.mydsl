@@ -1,4 +1,8 @@
-Hello Xtext!
-Hello VSCode from Xtext!
-Hello ThisFile from Other!
-Hello you!
+Hello A!
+Hello B from A!
+model s
+global{
+    init{
+
+    }
+} 

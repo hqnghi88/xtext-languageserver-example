@@ -2,16 +2,9 @@
 node_modules
 
 # Xtext / Xtend
-model
-src-gen
-xtend-gen
 .antlr*.jar
 
-# Eclipse
-.classpath
-.project
-.settings/
-.metadata/
+# Eclipse 
 bin/
 
 # IntelliJ
@@ -25,3 +18,29 @@ out/
 .gradle/
 build/
 !gradle-wrapper.jar
+*.icloud
+*.log
+target/
+*.orig
+build/
+!ummisco.gama.ui.shared/icons/build/
+dist/
+private/
+release/
+*.iml
+*.ipr
+*.iws
+*.iml
+.idea/
+*~
+*.bak
+.directory
+.DS_Store
+*.history
+*.class
+.metadata/
+/*/gaml/
+/*/bin/
+msi.gama.ext/lib/
+.__*
+/*/.tycho-consumer-pom.xml

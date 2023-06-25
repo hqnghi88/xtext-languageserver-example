@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Headless version of GAMA
+Bundle-SymbolicName: org.gama.headless;singleton:=true
+Bundle-Version: 1.9.2.qualifier
+Require-Bundle: msi.gama.core,
+ msi.gama.lang.gaml,
+ org.eclipse.core.runtime,
+ msi.gama.ext,
+ simtools.gaml.extensions.traffic,
+ ummisco.gaml.extensions.maths,
+ irit.gaml.extensions.database,
+ ummisco.gama.network,
+ org.eclipse.xtext.ide,
+ org.eclipse.lsp4j.jsonrpc,
+ org.eclipse.lsp4j,
+ com.google.gson;bundle-version="2.9.1"
+Bundle-ActivationPolicy: lazy
+Export-Package: 
+ msi.gama.headless.core,
+ msi.gama.headless.runtime
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: msi.gama.headless

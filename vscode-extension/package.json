@@ -46,11 +46,11 @@
         "commands": [
             {
                 "command": "mydsl.a.proxy",
-                "title": "MyDsl Command A"
+                "title": "mydsl Command A"
             },
             {
                 "command": "mydsl.b",
-                "title": "MyDsl Command B"
+                "title": "mydsl Command B"
             }
         ]
     },
