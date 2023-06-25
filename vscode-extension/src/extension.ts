@@ -24,7 +24,7 @@ export function activate(context: ExtensionContext) {
     };
     
     let clientOptions: LanguageClientOptions = {
-        documentSelector: ['mydsl'],
+        documentSelector: ['gaml'],
         synchronize: {
             fileEvents: workspace.createFileSystemWatcher('**/*.*')
         }
@@ -33,14 +33,14 @@ export function activate(context: ExtensionContext) {
     // Create the language client and start the client.
     lc = new LanguageClient('Xtext Server', serverOptions, clientOptions);
 
-    var disposable2 =commands.registerCommand("mydsl.a.proxy", async () => {
+    var disposable2 =commands.registerCommand("gaml.a.proxy", async () => {
         let activeEditor = window.activeTextEditor;
-        if (!activeEditor || !activeEditor.document || activeEditor.document.languageId !== 'mydsl') {
+        if (!activeEditor || !activeEditor.document || activeEditor.document.languageId !== 'gaml') {
             return;
         }
 
         if (activeEditor.document.uri instanceof Uri) {
-            commands.executeCommand("mydsl.a", activeEditor.document.uri.toString());
+            commands.executeCommand("gaml.a", activeEditor.document.uri.toString());
         }
     })
 

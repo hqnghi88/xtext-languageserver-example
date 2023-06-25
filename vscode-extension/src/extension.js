@@ -18,9 +18,9 @@ const vscode_1 = require("vscode");
 const node_1 = require("vscode-languageclient/node");
 let lc;
 function activate(context) {
-    // The server is a locally installed in src/mydsl
-    // let launcher = os.platform() === 'win32' ? 'mydsl-standalone.bat' : 'mydsl-standalone';
-    // let script = context.asAbsolutePath(path.join('src', 'mydsl', 'bin', launcher));
+    // The server is a locally installed in src/gaml
+    // let launcher = os.platform() === 'win32' ? 'gaml-standalone.bat' : 'gaml-standalone';
+    // let script = context.asAbsolutePath(path.join('src', 'gaml', 'bin', launcher));
     // let serverOptions = {
     //     run: { command: script },
     //     debug: { command: script, args: [], options: { env: createDebugEnv() } }
@@ -38,20 +38,20 @@ function activate(context) {
         return Promise.resolve(result);
     };
     let clientOptions = {
-        documentSelector: ['mydsl'],
+        documentSelector: ['gaml'],
         synchronize: {
             fileEvents: vscode_1.workspace.createFileSystemWatcher('**/*.*')
         }
     };
     // Create the language client and start the client.
     lc = new node_1.LanguageClient('Xtext Server', serverOptions, clientOptions);
-    var disposable2 = vscode_1.commands.registerCommand("mydsl.a.proxy", () => __awaiter(this, void 0, void 0, function* () {
+    var disposable2 = vscode_1.commands.registerCommand("gaml.a.proxy", () => __awaiter(this, void 0, void 0, function* () {
         let activeEditor = vscode_1.window.activeTextEditor;
-        if (!activeEditor || !activeEditor.document || activeEditor.document.languageId !== 'mydsl') {
+        if (!activeEditor || !activeEditor.document || activeEditor.document.languageId !== 'gaml') {
             return;
         }
         if (activeEditor.document.uri instanceof vscode_1.Uri) {
-            vscode_1.commands.executeCommand("mydsl.a", activeEditor.document.uri.toString());
+            vscode_1.commands.executeCommand("gaml.a", activeEditor.document.uri.toString());
         }
     }));
     context.subscriptions.push(disposable2);

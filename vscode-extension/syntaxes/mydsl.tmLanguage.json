@@ -1,8 +1,8 @@
 {
 	"name": "MyDsl",
-    "scopeName": "text.mydsl",
+    "scopeName": "text.gaml",
     "fileTypes": [
-        "mydsl"
+        "gaml"
     ],
     "repository": {
         "general": {
@@ -19,18 +19,18 @@
             ]
         },
         "linecomment": {
-            "name": "comment.line.double-dash.mydsl",
+            "name": "comment.line.double-dash.gaml",
             "begin": "(^[ \\t]+)?(?=//)",
 			"end": "(?=$)"
         },
         "blockcomment": {
-            "name": "comment.block.mydsl",
+            "name": "comment.block.gaml",
             "begin": "/\\*(\\*)?(?!/)",
 			"end": "\\*/"
         },
         
         "keyword": {
-            "name": "keyword.control.mydsl",
+            "name": "keyword.control.gaml",
             "match": "\\b(Hello|from)\\b|!"
 
         }

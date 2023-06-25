@@ -5,7 +5,6 @@ package msi.gama.lang.gaml;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.eclipse.xtext.ide.server.ServerModule;
 import msi.gama.lang.gaml.gaml.GamlPackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -16,7 +15,6 @@ import org.eclipse.xtext.XtextPackage;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.BinaryGrammarResourceFactoryImpl;
-import org.eclipse.xtext.util.Modules2;
 
 @SuppressWarnings("all")
 public class GamlStandaloneSetupGenerated implements ISetup {
@@ -42,8 +40,7 @@ public class GamlStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public Injector createInjector() {
-//		return Guice.createInjector(Modules2.mixin(new XServerModule(), new GamlRuntimeModule()));
-		return Guice.createInjector(new GamlRuntimeModule()); 
+		return Guice.createInjector(new GamlRuntimeModule());
 	}
 	
 	public void register(Injector injector) {

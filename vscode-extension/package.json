@@ -20,37 +20,37 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onLanguage:mydsl"
+        "onLanguage:gaml"
     ],
     "main": "out/extension",
     "contributes": {
         "languages": [
             {
-                "id": "mydsl",
+                "id": "gaml",
                 "aliases": [
-                    "mydsl"
+                    "gaml"
                 ],
                 "extensions": [
-                    ".mydsl"
+                    ".gaml"
                 ],
-                "configuration": "./mydsl.configuration.json"
+                "configuration": "./gaml.configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "mydsl",
-                "scopeName": "text.mydsl",
-                "path": "./syntaxes/mydsl.tmLanguage.json"
+                "language": "gaml",
+                "scopeName": "text.gaml",
+                "path": "./syntaxes/gaml.tmLanguage.json"
             }
         ],
         "commands": [
             {
-                "command": "mydsl.a.proxy",
-                "title": "mydsl Command A"
+                "command": "gaml.a.proxy",
+                "title": "gaml Command A"
             },
             {
-                "command": "mydsl.b",
-                "title": "mydsl Command B"
+                "command": "gaml.b",
+                "title": "gaml Command B"
             }
         ]
     },

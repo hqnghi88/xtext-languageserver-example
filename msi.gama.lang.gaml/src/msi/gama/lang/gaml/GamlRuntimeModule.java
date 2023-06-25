@@ -16,7 +16,7 @@ import org.eclipse.lsp4j.services.LanguageServer;
 import org.eclipse.xtext.ide.ExecutorServiceProvider;
 import org.eclipse.xtext.ide.server.DefaultProjectDescriptionFactory;
 import org.eclipse.xtext.ide.server.IMultiRootWorkspaceConfigFactory;
-import org.eclipse.xtext.ide.server.IProjectDescriptionFactory;
+import org.eclipse.xtext.ide.server.IProjectDescriptionFactory; 
 import org.eclipse.xtext.ide.server.LanguageServerImpl;
 import org.eclipse.xtext.ide.server.MultiRootWorkspaceConfigFactory;
 import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
@@ -99,9 +99,19 @@ public class GamlRuntimeModule extends msi.gama.lang.gaml.AbstractGamlRuntimeMod
 		// binder.bind(IResourceDescription.Manager.class).to(GamlResourceDescriptionManager.class);
 		// binder.bind(IOutputConfigurationProvider.class).to(GamlOutputConfigurationProvider.class);
 		binder.bind(IResourceValidator.class).to(GamlResourceValidator.class);
-		binder.bind(ErrorToDiagnoticTranslator.class); 
+		binder.bind(ErrorToDiagnoticTranslator.class);
 		// binder.bind(org.eclipse.xtext.scoping.IGlobalScopeProvider.class)
 		// .toInstance(new msi.gama.lang.gaml.scoping.BuiltinGlobalScopeProvider());
+		
+
+		binder.bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
+
+		binder.bind(LanguageServer.class).to(LanguageServerImpl.class);
+//		binder.bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
+		binder.bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
+		binder.bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
+//		binder.bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
+		
 		DEBUG.OUT("Initialization of GAML XText runtime module finished");
 	}
 

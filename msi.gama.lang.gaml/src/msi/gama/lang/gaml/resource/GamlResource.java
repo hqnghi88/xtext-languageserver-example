@@ -1,9 +1,9 @@
 /*******************************************************************************************************
  *
  * GamlResource.java, in msi.gama.lang.gaml, is part of the source code of the GAMA modeling and simulation platform
- * (v.1.9.0).
+ * (v.1.9.2).
  *
- * (c) 2007-2022 UMI 209 UMMISCO IRD/SU & Partners (IRIT, MIAT, TLU, CTU)
+ * (c) 2007-2023 UMI 209 UMMISCO IRD/SU & Partners (IRIT, MIAT, TLU, CTU)
  *
  * Visit https://github.com/gama-platform/gama for license information and contacts.
  *
@@ -171,11 +171,11 @@ public class GamlResource extends LazyLinkingResource {
 	}
 
 	@Override
-	public String getEncoding() { return "UTF-16"; }
+	public String getEncoding() { return "UTF-8"; }
 
 	@Override
 	public String toString() {
-		return "GamlResource[" + getURI().lastSegment() + "]";
+		return "GamlResource[" + getURI().lastSegment() + "]"+System.currentTimeMillis();
 	}
 
 	/**
@@ -235,14 +235,14 @@ public class GamlResource extends LazyLinkingResource {
 	 *            the s
 	 */
 	public void invalidate(final GamlResource r, final String s) {
-//		GamlCompilationError error = null;
-//		if (GamlResourceServices.equals(r.getURI(), getURI())) {
-//			error = new GamlCompilationError(s, GENERAL, r.getContents().get(0), false, false);
-//		} else {
-//			error = new GamlCompilationError(s, GENERAL, r.getURI(), false, false);
-//		}
-//		getValidationContext().add(error);
-//		updateWith(null, true);
+		GamlCompilationError error = null;
+		if (GamlResourceServices.equals(r.getURI(), getURI())) {
+			error = new GamlCompilationError(s, GENERAL, r.getContents().get(0), false, false);
+		} else {
+			error = new GamlCompilationError(s, GENERAL, r.getURI(), false, false);
+		}
+		getValidationContext().add(error);
+		updateWith(null, true);
 	}
 
 	/**
@@ -280,27 +280,27 @@ public class GamlResource extends LazyLinkingResource {
 	 *
 	 */
 	public void validate() {
-//		final ModelDescription model = buildCompleteDescription();
-//		if (model == null) {
-//			updateWith(null, true);
-//			return;
-//		}
-//
-//		// We then validate it and get rid of the description. The
-//		// documentation is produced only if the resource is
-//		// marked as 'edited'
-//		final boolean edited = GamlResourceServices.isEdited(this.getURI());
-//		try {
-//			model.validate(edited);
-//			updateWith(model, true);
-//		} finally {
-//			if (edited) {
-//				GamlResourceServices.getResourceDocumenter().addCleanupTask(model);
-//			} else {
-//				model.dispose();
-//			}
-//			// }
-//		}
+		final ModelDescription model = buildCompleteDescription();
+		if (model == null) {
+			updateWith(null, true);
+			return;
+		}
+
+		// We then validate it and get rid of the description. The
+		// documentation is produced only if the resource is
+		// marked as 'edited'
+		final boolean edited = GamlResourceServices.isEdited(this.getURI());
+		try {
+			model.validate(edited);
+			updateWith(model, true);
+		} finally {
+			if (edited) {
+				GamlResourceServices.getResourceDocumenter().addCleanupTask(model);
+			} else {
+				model.dispose();
+			}
+			// }
+		}
 	}
 
 	@Override
@@ -339,17 +339,17 @@ public class GamlResource extends LazyLinkingResource {
 	 * @throws IOException
 	 */
 	public void loadSynthetic(final InputStream is, final IExecutionContext additionalLinkingContext) {
-//		final OnChangeEvictingCache r = getCache();
-//		r.getOrCreate(this).set("linking", additionalLinkingContext);
-//		getCache().execWithoutCacheClear(this, new IUnitOfWork.Void<GamlResource>() {
-//
-//			@Override
-//			public void process(final GamlResource state) throws Exception {
-//				state.load(is, null);
-//				resolveAll(GamlResource.this);
-//			}
-//		});
-//		r.getOrCreate(this).set("linking", null);
+		final OnChangeEvictingCache r = getCache();
+		r.getOrCreate(this).set("linking", additionalLinkingContext);
+		getCache().execWithoutCacheClear(this, new IUnitOfWork.Void<GamlResource>() {
+
+			@Override
+			public void process(final GamlResource state) throws Exception {
+				state.load(is, null);
+				resolveAll(GamlResource.this);
+			}
+		});
+		r.getOrCreate(this).set("linking", null);
 
 	}
 
@@ -358,16 +358,16 @@ public class GamlResource extends LazyLinkingResource {
 
 	@Override
 	protected void doLinking() {
-//		// If the imports are not correctly updated, we cannot proceed
-//		final EObject faulty = updateImports(this);
-//		if (faulty != null) {
-//			final EAttribute attribute = getContents().get(0) instanceof Model ? GamlPackage.Literals.IMPORT__IMPORT_URI
-//					: GamlPackage.Literals.HEADLESS_EXPERIMENT__IMPORT_URI;
-//			getErrors().add(new EObjectDiagnosticImpl(ERROR, IMPORT_ERROR, "Impossible to locate import", faulty,
-//					attribute, -1, null));
-//			return;
-//		}
-//		super.doLinking();
+		// If the imports are not correctly updated, we cannot proceed
+		final EObject faulty = updateImports(this);
+		if (faulty != null) {
+			final EAttribute attribute = getContents().get(0) instanceof Model ? GamlPackage.Literals.IMPORT__IMPORT_URI
+					: GamlPackage.Literals.HEADLESS_EXPERIMENT__IMPORT_URI;
+			getErrors().add(new EObjectDiagnosticImpl(ERROR, IMPORT_ERROR, "Impossible to locate import", faulty,
+					attribute, -1, null));
+			return;
+		}
+		super.doLinking();
 	}
 
 	/**

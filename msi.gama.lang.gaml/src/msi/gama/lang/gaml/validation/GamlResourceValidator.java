@@ -50,7 +50,7 @@ public class GamlResourceValidator implements IResourceValidator {
 				}
 			};
 			// We resolve the cross references
-//			EcoreUtil2.resolveLazyCrossReferences(resource, indicator);
+			EcoreUtil2.resolveLazyCrossReferences(resource, indicator);
 			// DEBUG.OUT("Cross references resolved for " + resource.getURI().lastSegment());
 			// And collect the syntax / linking issues
 			for (int i = 0; i < resource.getErrors().size(); i++) {
