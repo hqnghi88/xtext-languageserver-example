@@ -1,0 +1,44 @@
+{
+	"name": "Gaml",
+    "scopeName": "text.gaml",
+    "fileTypes": [
+        "gaml"
+    ],
+    "repository": {
+        "general": {
+            "patterns": [
+                {
+                    "include": "#linecomment"
+                },
+                {
+                    "include": "#blockcomment"
+                },
+                {
+                    "include": "#keyword"
+                }
+            ]
+        },
+        "linecomment": {
+            "name": "comment.line.double-dash.gaml",
+            "begin": "(^[ \\t]+)?(?=//)",
+			"end": "(?=$)"
+        },
+        "blockcomment": {
+            "name": "comment.block.gaml",
+            "begin": "/\\*(\\*)?(?!/)",
+			"end": "\\*/"
+        },
+        
+        "keyword": {
+            "name": "keyword.control.gaml",
+            "match": "\\b(Hello|from)\\b|!"
+
+        }
+    },
+    "patterns": [
+        {
+            "include": "#general"
+        }
+    ],
+    "uuid": "8383e49a-fa0d-4bb5-827b-10e8abb294ca"
+}

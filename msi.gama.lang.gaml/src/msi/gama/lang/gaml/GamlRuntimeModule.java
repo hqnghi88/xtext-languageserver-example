@@ -94,12 +94,12 @@ public class GamlRuntimeModule extends msi.gama.lang.gaml.AbstractGamlRuntimeMod
 		// binder.bind(ExpressionDescriptionBuilder.class);
 		// binder.bind(IDocManager.class).to(GamlResourceDocumenter.class);
 		// binder.bind(GamlSyntacticConverter.class);
-		binder.bind(IDefaultResourceDescriptionStrategy.class).to(GamlResourceDescriptionStrategy.class);
-		binder.bind(IQualifiedNameConverter.class).to(GamlNameConverter.class);
-		// binder.bind(IResourceDescription.Manager.class).to(GamlResourceDescriptionManager.class);
-		// binder.bind(IOutputConfigurationProvider.class).to(GamlOutputConfigurationProvider.class);
-		binder.bind(IResourceValidator.class).to(GamlResourceValidator.class);
-		binder.bind(ErrorToDiagnoticTranslator.class);
+//		binder.bind(IDefaultResourceDescriptionStrategy.class).to(GamlResourceDescriptionStrategy.class);
+//		binder.bind(IQualifiedNameConverter.class).to(GamlNameConverter.class);
+//		// binder.bind(IResourceDescription.Manager.class).to(GamlResourceDescriptionManager.class);
+//		// binder.bind(IOutputConfigurationProvider.class).to(GamlOutputConfigurationProvider.class);
+//		binder.bind(IResourceValidator.class).to(GamlResourceValidator.class);
+//		binder.bind(ErrorToDiagnoticTranslator.class);
 		// binder.bind(org.eclipse.xtext.scoping.IGlobalScopeProvider.class)
 		// .toInstance(new msi.gama.lang.gaml.scoping.BuiltinGlobalScopeProvider());
 		
@@ -114,113 +114,113 @@ public class GamlRuntimeModule extends msi.gama.lang.gaml.AbstractGamlRuntimeMod
 		
 		DEBUG.OUT("Initialization of GAML XText runtime module finished");
 	}
-
-	@Override
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return GamlQualifiedNameProvider.class;
-	}
-
-	/**
-	 * Bind I gaml expression compiler.
-	 *
-	 * @return the class<? extends I expression compiler>
-	 */
-	@SuppressWarnings ("rawtypes")
-	public Class<? extends IExpressionCompiler> bindIGamlExpressionCompiler() {
-		return GamlExpressionCompiler.class;
-	}
-
-	@Override
-	@SingletonBinding ()
-	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		// return null;
-		return msi.gama.lang.gaml.scoping.BuiltinGlobalScopeProvider.class;
-	}
-
-	/**
-	 * Bind I syntax error message provider.
-	 *
-	 * @return the class<? extends I syntax error message provider>
-	 */
-	public Class<? extends ISyntaxErrorMessageProvider> bindISyntaxErrorMessageProvider() {
-		return GamlSyntaxErrorMessageProvider.class;
-	}
-
-	@Override
-	public Class<? extends ILinkingService> bindILinkingService() {
-		return GamlLinkingService.class;
-	}
-
-	/**
-	 * Bind I linking diagnostic message provider.
-	 *
-	 * @return the class<? extends I linking diagnostic message provider. extended>
-	 */
-	public Class<? extends ILinkingDiagnosticMessageProvider.Extended> bindILinkingDiagnosticMessageProvider() {
-		return GamlLinkingErrorMessageProvider.class;
-	}
-
+//
+//	@Override
+//	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+//		return GamlQualifiedNameProvider.class;
+//	}
+//
+//	/**
+//	 * Bind I gaml expression compiler.
+//	 *
+//	 * @return the class<? extends I expression compiler>
+//	 */
+//	@SuppressWarnings ("rawtypes")
+//	public Class<? extends IExpressionCompiler> bindIGamlExpressionCompiler() {
+//		return GamlExpressionCompiler.class;
+//	}
+//
+//	@Override
+//	@SingletonBinding ()
+//	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
+//		// return null;
+//		return msi.gama.lang.gaml.scoping.BuiltinGlobalScopeProvider.class;
+//	}
+//
+//	/**
+//	 * Bind I syntax error message provider.
+//	 *
+//	 * @return the class<? extends I syntax error message provider>
+//	 */
+//	public Class<? extends ISyntaxErrorMessageProvider> bindISyntaxErrorMessageProvider() {
+//		return GamlSyntaxErrorMessageProvider.class;
+//	}
+//
+//	@Override
+//	public Class<? extends ILinkingService> bindILinkingService() {
+//		return GamlLinkingService.class;
+//	}
+//
+//	/**
+//	 * Bind I linking diagnostic message provider.
+//	 *
+//	 * @return the class<? extends I linking diagnostic message provider. extended>
+//	 */
+//	public Class<? extends ILinkingDiagnosticMessageProvider.Extended> bindILinkingDiagnosticMessageProvider() {
+//		return GamlLinkingErrorMessageProvider.class;
+//	}
+//
 	@Override
 	public Class<? extends XtextResource> bindXtextResource() {
 		return GamlResource.class;
 	}
-
-	// @Override
-	// public Class<? extends IParser> bindIParser() {
-	// return GamlSyntacticParser.class;
-	// }
-
-	@Override
-	public void configureRuntimeEncodingProvider(final Binder binder) {
-		binder.bind(IEncodingProvider.class).annotatedWith(DispatchingProvider.Runtime.class)
-				.to(GamlEncodingProvider.class);
-	}
-
-	// contributed by
-	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
-	public Class<? extends org.eclipse.xtext.resource.IContainer.Manager> bindIContainer$Manager() {
-		return org.eclipse.xtext.resource.containers.StateBasedContainerManager.class;
-	}
-
-	// contributed by
-	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
-	public Class<? extends org.eclipse.xtext.resource.containers.IAllContainersState.Provider>
-			bindIAllContainersState$Provider() {
-		return org.eclipse.xtext.resource.containers.ResourceSetBasedAllContainersStateProvider.class;
-	}
-
-	// contributed by
-	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
-	public void configureIResourceDescriptions(final com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class)
-				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
-	}
-
-	/**
-	 * Bind I resource description$ manager.
-	 *
-	 * @return the class<? extends I resource description. manager>
-	 */
-	public Class<? extends IResourceDescription.Manager> bindIResourceDescription$Manager() {
-		return GamlResourceDescriptionManager.class;
-	}
-
-	// contributed by
-	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
-	public void configureIResourceDescriptionsPersisted(final com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class)
-				.annotatedWith(com.google.inject.name.Names
-						.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
-				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
-	}
-
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	@Override
-	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return msi.gama.lang.gaml.formatting.GamlFormatter.class;
-	}
+//
+//	// @Override
+//	// public Class<? extends IParser> bindIParser() {
+//	// return GamlSyntacticParser.class;
+//	// }
+//
+//	@Override
+//	public void configureRuntimeEncodingProvider(final Binder binder) {
+//		binder.bind(IEncodingProvider.class).annotatedWith(DispatchingProvider.Runtime.class)
+//				.to(GamlEncodingProvider.class);
+//	}
+//
+//	// contributed by
+//	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+//	@Override
+//	public Class<? extends org.eclipse.xtext.resource.IContainer.Manager> bindIContainer$Manager() {
+//		return org.eclipse.xtext.resource.containers.StateBasedContainerManager.class;
+//	}
+//
+//	// contributed by
+//	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+//	@Override
+//	public Class<? extends org.eclipse.xtext.resource.containers.IAllContainersState.Provider>
+//			bindIAllContainersState$Provider() {
+//		return org.eclipse.xtext.resource.containers.ResourceSetBasedAllContainersStateProvider.class;
+//	}
+//
+//	// contributed by
+//	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+//	@Override
+//	public void configureIResourceDescriptions(final com.google.inject.Binder binder) {
+//		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class)
+//				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
+//	}
+//
+//	/**
+//	 * Bind I resource description$ manager.
+//	 *
+//	 * @return the class<? extends I resource description. manager>
+//	 */
+//	public Class<? extends IResourceDescription.Manager> bindIResourceDescription$Manager() {
+//		return GamlResourceDescriptionManager.class;
+//	}
+//
+//	// contributed by
+//	// org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+//	@Override
+//	public void configureIResourceDescriptionsPersisted(final com.google.inject.Binder binder) {
+//		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class)
+//				.annotatedWith(com.google.inject.name.Names
+//						.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
+//				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
+//	}
+//
+//	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
+//	@Override
+//	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
+//		return msi.gama.lang.gaml.formatting.GamlFormatter.class;
+//	}
 }

@@ -328,9 +328,9 @@ public class GamlResource extends LazyLinkingResource {
 	 *            the new element
 	 */
 	private void setElement(final ISyntacticElement model) {
-//		if (model == element) return;
-//		if (element != null) { element.dispose(); }
-//		element = model;
+		if (model == element) return;
+		if (element != null) { element.dispose(); }
+		element = model;
 	}
 
 	/**
