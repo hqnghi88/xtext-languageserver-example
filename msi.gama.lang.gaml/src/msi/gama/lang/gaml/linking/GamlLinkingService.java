@@ -32,6 +32,7 @@ import msi.gama.lang.gaml.EGaml;
 import msi.gama.lang.gaml.gaml.GamlDefinition;
 import msi.gama.lang.gaml.gaml.GamlPackage;
 import msi.gama.lang.gaml.resource.GamlResource;
+import msi.gama.lang.gaml.resource.GamlResource2;
 import msi.gama.runtime.IExecutionContext;
 
 /**
@@ -147,7 +148,7 @@ public class GamlLinkingService extends DefaultLinkingService {
 				|| GamlPackage.eINSTANCE.getActionDefinition().isSuperTypeOf(eclass)
 				|| GamlPackage.eINSTANCE.getVarDefinition().isSuperTypeOf(eclass))
 			return addSymbol(name, ref.getEReferenceType());
-		final GamlResource resource = (GamlResource) context.eResource();
+		final GamlResource2 resource = (GamlResource2) context.eResource();
 		final IExecutionContext additionalContext = resource.getCache().getOrCreate(resource).get("linking");
 		if (additionalContext != null && additionalContext.hasLocalVar(name))
 			return Collections.singletonList(create(name, ref.getEReferenceType()));

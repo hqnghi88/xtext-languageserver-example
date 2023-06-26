@@ -26,6 +26,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Inject;
 
 import msi.gama.lang.gaml.resource.GamlResource;
+import msi.gama.lang.gaml.resource.GamlResource2;
 import msi.gama.lang.gaml.resource.GamlResourceServices;
 import msi.gama.util.Collector;
 
@@ -58,7 +59,7 @@ public class GamlResourceValidator implements IResourceValidator {
 			}
 
 			// We then ask the resource to validate itself
-			final GamlResource r = (GamlResource) resource;
+			final GamlResource2 r = (GamlResource2) resource;
 			r.validate();
 			// DEBUG.OUT("Resource has been validated: " + resource.getURI().lastSegment());
 			// And collect the semantic errors from its error collector

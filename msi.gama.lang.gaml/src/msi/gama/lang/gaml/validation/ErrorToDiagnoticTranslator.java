@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.util.Arrays;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.CheckType;
@@ -33,6 +34,7 @@ import msi.gama.lang.gaml.gaml.Model;
 import msi.gama.lang.gaml.gaml.Statement;
 import msi.gama.lang.gaml.gaml.impl.StatementImpl;
 import msi.gama.lang.gaml.resource.GamlResource;
+import msi.gama.lang.gaml.resource.GamlResource2;
 import msi.gama.lang.gaml.resource.GamlResourceServices;
 import msi.gaml.compilation.GamlCompilationError;
 import msi.gaml.descriptions.ValidationContext;
@@ -57,7 +59,7 @@ public class ErrorToDiagnoticTranslator {
 	 * @param mode the mode
 	 * @return the diagnostic
 	 */
-	public Diagnostic translate(final ValidationContext errors, final GamlResource r, final CheckMode mode) {
+	public Diagnostic translate(final ValidationContext errors, final Resource r, final CheckMode mode) {
 		final BasicDiagnostic chain = new BasicDiagnostic();
 		for (final GamlCompilationError e : errors) {
 			final Diagnostic d = translate(e, r, mode);
@@ -76,7 +78,7 @@ public class ErrorToDiagnoticTranslator {
 	 * @param mode the mode
 	 * @return the diagnostic
 	 */
-	public Diagnostic translate(final GamlCompilationError e, final GamlResource r, final CheckMode mode) {
+	public Diagnostic translate(final GamlCompilationError e, final Resource r, final CheckMode mode) {
 		final URI errorURI = e.getURI();
 		if (!GamlResourceServices.equals(errorURI, r.getURI())) {
 			//			final String uri = URI.decode(errorURI.toFileString());

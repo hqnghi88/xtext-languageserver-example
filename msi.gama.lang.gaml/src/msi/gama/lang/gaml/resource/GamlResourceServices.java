@@ -222,13 +222,13 @@ public class GamlResourceServices {
 	 *            the r
 	 * @return the validation context
 	 */
-	public static ValidationContext getValidationContext(final GamlResource r) {
+	public static ValidationContext getValidationContext(final Resource r) {
 		final URI newURI = r.getURI();
 		if (!resourceErrors.containsKey(newURI)) {
-			resourceErrors.put(newURI, new ValidationContext(newURI, r.hasErrors(), getResourceDocumenter()));
+			resourceErrors.put(newURI, new ValidationContext(newURI, ((GamlResource2)r).hasErrors(), getResourceDocumenter()));
 		}
 		final ValidationContext result = resourceErrors.get(newURI);
-		result.hasInternalSyntaxErrors(r.hasErrors());
+		result.hasInternalSyntaxErrors(((GamlResource2)r).hasErrors());
 		return result;
 	}
 
@@ -238,7 +238,7 @@ public class GamlResourceServices {
 	 * @param r
 	 *            the r
 	 */
-	public static void discardValidationContext(final GamlResource r) {
+	public static void discardValidationContext(final Resource r) {
 		resourceErrors.remove(r.getURI());
 	}
 
@@ -327,15 +327,15 @@ public class GamlResourceServices {
 	 * @return the temporary resource
 	 */
 	// GamlResourceServices to become free
-	public/* synchronized */ static GamlResource getTemporaryResource(final IDescription existing) {
+	public/* synchronized */ static GamlResource2 getTemporaryResource(final IDescription existing) {
 		ResourceSet rs = null;
-		GamlResource r = null;
+		GamlResource2 r = null;
 		if (existing != null) {
 			final ModelDescription desc = existing.getModelDescription();
 			if (desc != null) {
 				final EObject e = desc.getUnderlyingElement();
 				if (e != null) {
-					r = (GamlResource) e.eResource();
+					r = (GamlResource2) e.eResource();
 					if (r != null) { rs = r.getResourceSet(); }
 				}
 			}
@@ -343,16 +343,16 @@ public class GamlResourceServices {
 		if (rs == null) { rs = getPoolSet(); }
 		final URI uri = URI.createURI(IKeyword.SYNTHETIC_RESOURCES_PREFIX + resourceCount++ + ".gaml", false);
 		// TODO Modifier le cache de la resource ici ?
-		final GamlResource result = (GamlResource) rs.createResource(uri);
-		final IMap<URI, String> imports = GamaMapFactory.create();
-		imports.put(uri, null);
-		if (r != null) {
-			imports.put(r.getURI(), null);
-			final Map<URI, String> uris = GamlResourceIndexer.allImportsOf(r);
-			imports.putAll(uris);
-		}
-		// result.setImports(imports);
-		result.getCache().getOrCreate(result).set(GamlResourceIndexer.IMPORTED_URIS, imports);
+		final GamlResource2 result = (GamlResource2) rs.createResource(uri);
+//		final IMap<URI, String> imports = GamaMapFactory.create();
+//		imports.put(uri, null);
+//		if (r != null) {
+//			imports.put(r.getURI(), null);
+//			final Map<URI, String> uris = GamlResourceIndexer.allImportsOf(r);
+//			imports.putAll(uris);
+//		}
+//		// result.setImports(imports);
+//		result.getCache().getOrCreate(result).set(GamlResourceIndexer.IMPORTED_URIS, imports);
 		return result;
 	}
 
@@ -362,7 +362,7 @@ public class GamlResourceServices {
 	 * @param temp
 	 *            the temp
 	 */
-	public static void discardTemporaryResource(final GamlResource temp) {
+	public static void discardTemporaryResource(final GamlResource2 temp) {
 		try {
 			temp.delete(null);
 		} catch (final IOException e) {
@@ -384,8 +384,8 @@ public class GamlResourceServices {
 	 *            the r
 	 * @return the i syntactic element
 	 */
-	public static ISyntacticElement buildSyntacticContents(final GamlResource r) {
-		return converter.buildSyntacticContents(r.getParseResult().getRootASTElement(), null);
+	public static ISyntacticElement buildSyntacticContents(final Resource r) {
+		return converter.buildSyntacticContents(((GamlResource2)r).getParseResult().getRootASTElement(), null);
 	}
 
 	/**

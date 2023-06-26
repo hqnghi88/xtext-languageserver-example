@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.google.inject.Singleton;
@@ -32,8 +33,8 @@ import msi.gama.lang.gaml.gaml.GamlPackage;
 import msi.gama.lang.gaml.gaml.Import;
 import msi.gama.lang.gaml.gaml.Model;
 import msi.gama.lang.gaml.gaml.impl.ModelImpl;
-import msi.gama.lang.gaml.resource.GamlResource;
-import msi.gama.lang.gaml.resource.GamlResource.ImportedResources;
+import msi.gama.lang.gaml.resource.GamlResource2;
+//import msi.gama.lang.gaml.resource.GamlResource.ImportedResources;
 import msi.gama.lang.gaml.resource.GamlResourceServices;
 import msi.gama.util.GamaMapFactory;
 import msi.gama.util.IMap;
@@ -164,7 +165,7 @@ public class GamlResourceIndexer {
 	/**
 	 * Synchronized method to avoid concurrent errors in the graph in case of a parallel resource loader
 	 */
-	public static synchronized EObject updateImports(final GamlResource r) {
+	public static synchronized EObject updateImports(final Resource r) {
 		final URI baseURI = r.getURI();
 		final Map<URI, String> existingEdges = index.outgoingEdgesOf(baseURI);
 		if (r.getContents().isEmpty()) return null;
@@ -191,42 +192,42 @@ public class GamlResourceIndexer {
 		return null;
 
 	}
-
-	/**
-	 * Validate the imports of a resource by reconstructing the associated resources and verifying their status.
-	 *
-	 * @param resource
-	 *            the resource
-	 * @return the linked hash multimap
-	 */
-	public static ImportedResources validateImportsOf(final GamlResource resource) {
-		final Map<URI, String> uris = allImportsOf(resource);
-		ImportedResources imports = null;
-		if (!uris.isEmpty()) {
-			imports = new ImportedResources();
-			for (Map.Entry<URI, String> entry : uris.entrySet()) {
-				final GamlResource r = (GamlResource) resource.getResourceSet().getResource(entry.getKey(), true);
-				if (r == resource) { continue; }
-				if (r.hasErrors()) {
-					resource.invalidate(r, "Errors detected");
-					return null;
-				}
-				imports.add(entry.getValue(), r);
-			}
-		}
-		return imports;
-	}
-
-	/**
-	 * All labeled imports of.
-	 *
-	 * @param r
-	 *            the r
-	 * @return the i map
-	 */
-	public static Map<URI, String> allImportsOf(final GamlResource r) {
-		return r.getCache().get(IMPORTED_URIS, r, () -> allImportsOfProperlyEncoded(r.getURI()));
-	}
+//
+//	/**
+//	 * Validate the imports of a resource by reconstructing the associated resources and verifying their status.
+//	 *
+//	 * @param resource
+//	 *            the resource
+//	 * @return the linked hash multimap
+//	 */
+//	public static ImportedResources validateImportsOf(final GamlResource resource) {
+//		final Map<URI, String> uris = allImportsOf(resource);
+//		ImportedResources imports = null;
+//		if (!uris.isEmpty()) {
+//			imports = new ImportedResources();
+//			for (Map.Entry<URI, String> entry : uris.entrySet()) {
+//				final GamlResource r = (GamlResource) resource.getResourceSet().getResource(entry.getKey(), true);
+//				if (r == resource) { continue; }
+//				if (r.hasErrors()) {
+//					resource.invalidate(r, "Errors detected");
+//					return null;
+//				}
+//				imports.add(entry.getValue(), r);
+//			}
+//		}
+//		return imports;
+//	}
+//
+//	/**
+//	 * All labeled imports of.
+//	 *
+//	 * @param r
+//	 *            the r
+//	 * @return the i map
+//	 */
+//	public static Map<URI, String> allImportsOf(final GamlResource r) {
+//		return r.getCache().get(IMPORTED_URIS, r, () -> allImportsOfProperlyEncoded(r.getURI()));
+//	}
 
 	/**
 	 * Erase index.
@@ -243,7 +244,7 @@ public class GamlResourceIndexer {
 	 *            the r
 	 * @return true, if is imported
 	 */
-	public static boolean isImported(final GamlResource r) {
+	public static boolean isImported(final GamlResource2 r) {
 		return !directImportersOf(r.getURI()).isEmpty();
 	}
 
@@ -309,7 +310,7 @@ public class GamlResourceIndexer {
 	 *            the uri
 	 * @return the list
 	 */
-	public static Map<URI, URI> collectMultipleImportsOf(final GamlResource r) {
+	public static Map<URI, URI> collectMultipleImportsOf(final GamlResource2 r) {
 		Map<URI, URI> result = Collections.EMPTY_MAP;
 		Set<URI> uris = directImportsOf(r.getURI());
 		for (URI uri : uris) {

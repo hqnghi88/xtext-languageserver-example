@@ -80,6 +80,7 @@ import msi.gama.lang.gaml.gaml.VarDefinition;
 import msi.gama.lang.gaml.gaml.VariableRef;
 import msi.gama.lang.gaml.gaml.util.GamlSwitch;
 import msi.gama.lang.gaml.resource.GamlResource;
+import msi.gama.lang.gaml.resource.GamlResource2;
 import msi.gama.lang.gaml.resource.GamlResourceServices;
 import msi.gama.outputs.layers.KeyboardEventLayerDelegate;
 import msi.gama.outputs.layers.MouseEventLayerDelegate;
@@ -1434,7 +1435,7 @@ public class GamlExpressionCompiler extends GamlSwitch<IExpression> implements I
 	private EObject getEObjectOf(final String string, final IExecutionContext tempContext) throws GamaRuntimeException {
 		EObject result = null;
 		final String s = "dummy <- " + string;
-		final GamlResource resource = GamlResourceServices.getTemporaryResource(getContext());
+		final GamlResource2 resource = GamlResourceServices.getTemporaryResource(getContext());
 		try {
 			final InputStream is = new ByteArrayInputStream(s.getBytes());
 			try {
@@ -1461,7 +1462,7 @@ public class GamlExpressionCompiler extends GamlSwitch<IExpression> implements I
 	public List<IDescription> compileBlock(final String string, final IDescription actionContext,
 			final IExecutionContext tempContext) throws GamaRuntimeException {
 		final String s = "__synthetic__ {" + string + "}";
-		final GamlResource resource = GamlResourceServices.getTemporaryResource(getContext());
+		final GamlResource2 resource = GamlResourceServices.getTemporaryResource(getContext());
 		try (final Collector.AsList<IDescription> result = Collector.getList()) {
 			final InputStream is = new ByteArrayInputStream(s.getBytes());
 			try {

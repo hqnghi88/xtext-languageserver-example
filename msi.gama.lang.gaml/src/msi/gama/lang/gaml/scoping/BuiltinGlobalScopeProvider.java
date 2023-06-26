@@ -262,7 +262,7 @@ public class BuiltinGlobalScopeProvider extends ImportUriGlobalScopeProvider {
 	protected IScope getScope(final Resource resource, final boolean ignoreCase, final EClass type,
 			final Predicate<IEObjectDescription> filter) {
 		IScope scope = scopes.get(type);
-		Collection<URI> imports = GamlResourceIndexer.allImportsOf((GamlResource) resource).keySet();
+		Collection<URI> imports =Collections.EMPTY_SET;// GamlResourceIndexer.allImportsOf((GamlResource) resource).keySet();
 		int size = imports.size();
 		if (size == 0) return scope;
 		if (size > 1) {

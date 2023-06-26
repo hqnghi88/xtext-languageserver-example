@@ -64,7 +64,7 @@ public class GamlResourceDescriptionManager extends DefaultResourceDescriptionMa
 	@Override
 	protected IResourceDescription internalGetResourceDescription(final Resource resource,
 			final IDefaultResourceDescriptionStrategy strategy) {
-		return new GamlResourceDescription((GamlResource) resource, strategy, getCache(), provider);
+		return new GamlResourceDescription((GamlResource2) resource, strategy, getCache(), provider);
 	}
 
 	@Override

@@ -251,7 +251,7 @@ public class GamlResource extends LazyLinkingResource {
 	 * @return the model description
 	 */
 	public ModelDescription buildCompleteDescription() {
-		final ImportedResources imports = GamlResourceIndexer.validateImportsOf(this);
+		final ImportedResources imports = null;//GamlResourceIndexer.validateImportsOf(this);
 		if (hasErrors() || hasSemanticErrors()) return null;
 		final ModelDescription model = buildModelDescription(imports);
 		// If, for whatever reason, the description is null, we stop the
@@ -259,13 +259,13 @@ public class GamlResource extends LazyLinkingResource {
 		if (model == null) {
 			invalidate(this, "Impossible to validate " + URI.decode(getURI().lastSegment()) + " (check the logs)");
 		}
-		Map<URI, URI> doubleImports = collectMultipleImportsOf(this);
-		doubleImports.forEach((imported, importer) -> {
-			String s = imported.lastSegment() + " is already imported by " + importer.lastSegment();
-			EObject o = getImportObject(getContents().get(0), getURI(), imported);
-			GamlCompilationError error = new GamlCompilationError(s, GENERAL, o, false, true);
-			getValidationContext().add(error);
-		});
+//		Map<URI, URI> doubleImports = collectMultipleImportsOf(this);
+//		doubleImports.forEach((imported, importer) -> {
+//			String s = imported.lastSegment() + " is already imported by " + importer.lastSegment();
+//			EObject o = getImportObject(getContents().get(0), getURI(), imported);
+//			GamlCompilationError error = new GamlCompilationError(s, GENERAL, o, false, true);
+//			getValidationContext().add(error);
+//		});
 		return model;
 	}
 

@@ -17,6 +17,12 @@
    <extension
          point="gaml.extension">
    </extension>
+    <extension
+          point="org.eclipse.xtext.ui.shared.overridingGuiceModule">
+       <module
+             class="msi.gama.lang.gaml.ide.OverridingModule">
+       </module>
+    </extension>
    <extension
          id="product"
          point="org.eclipse.core.runtime.products">

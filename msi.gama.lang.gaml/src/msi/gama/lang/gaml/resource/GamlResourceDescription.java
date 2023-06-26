@@ -10,6 +10,7 @@
  ********************************************************************************************************/
 package msi.gama.lang.gaml.resource;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.impl.DefaultResourceDescription;
@@ -52,7 +53,7 @@ public class GamlResourceDescription extends DefaultResourceDescription {
 	 *            default constructor
 	 */
 	@Inject
-	public GamlResourceDescription(final GamlResource resource, final IDefaultResourceDescriptionStrategy strategy,
+	public GamlResourceDescription(final Resource resource, final IDefaultResourceDescriptionStrategy strategy,
 			final IResourceScopeCache cache, final BuiltinGlobalScopeProvider provider) {
 		super(resource, strategy, cache);
 		this.provider = provider;
@@ -66,8 +67,8 @@ public class GamlResourceDescription extends DefaultResourceDescription {
 	}
 
 	@Override
-	public GamlResource getResource() { 
-		return (GamlResource) super.getResource();
+	public GamlResource2 getResource() { 
+		return (GamlResource2) super.getResource();
 	}
 
 }
