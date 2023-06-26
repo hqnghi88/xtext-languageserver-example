@@ -1,2 +1,2 @@
-connection.project.dir=../org.xtext.example.mydsl.ide
+connection.project.dir=../vscode-extension-self-contained
 eclipse.preferences.version=1
