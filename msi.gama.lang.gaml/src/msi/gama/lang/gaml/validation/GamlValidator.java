@@ -10,6 +10,10 @@
  ********************************************************************************************************/
 package msi.gama.lang.gaml.validation;
 
+import org.eclipse.xtext.validation.Check;
+
+import msi.gama.lang.gaml.gaml.GamlPackage;
+import msi.gama.lang.gaml.gaml.Model; 
 
 /**
  * This class contains custom validation rules. 
@@ -18,13 +22,13 @@ package msi.gama.lang.gaml.validation;
  */
 public class GamlValidator extends AbstractGamlValidator {
 	
-//	public static final INVALID_NAME = 'invalidName'
+//	public static final String INVALID_NAME = "invalidName";
 //
 //	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
+//	public void checkGreetingStartsWithCapital(Model greeting) {
 //		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					GamlPackage.Literals.GREETING__NAME,
+//			warning("Name should start with a Viet Hoa",
+//					GamlPackage.Literals.MODEL__BLOCK,
 //					INVALID_NAME);
 //		}
 //	}

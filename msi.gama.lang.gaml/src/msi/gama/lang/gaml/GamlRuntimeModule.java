@@ -46,6 +46,7 @@ import msi.gama.lang.gaml.naming.GamlQualifiedNameProvider;
 import msi.gama.lang.gaml.parsing.GamlSyntaxErrorMessageProvider;
 import msi.gama.lang.gaml.resource.GamlEncodingProvider;
 import msi.gama.lang.gaml.resource.GamlResource;
+import msi.gama.lang.gaml.resource.GamlResource2;
 import msi.gama.lang.gaml.resource.GamlResourceDescriptionManager;
 import msi.gama.lang.gaml.resource.GamlResourceDescriptionStrategy;
 import msi.gama.lang.gaml.validation.ErrorToDiagnoticTranslator;
@@ -105,15 +106,16 @@ public class GamlRuntimeModule extends msi.gama.lang.gaml.AbstractGamlRuntimeMod
 		
 
 		binder.bind(ExecutorService.class).toProvider(ExecutorServiceProvider.class);
-
+//
 		binder.bind(LanguageServer.class).to(LanguageServerImpl.class);
 //		binder.bind(IResourceServiceProvider.Registry.class).toProvider(ResourceServiceProviderServiceLoader.class);
 		binder.bind(IMultiRootWorkspaceConfigFactory.class).to(MultiRootWorkspaceConfigFactory.class);
 		binder.bind(IProjectDescriptionFactory.class).to(DefaultProjectDescriptionFactory.class);
-//		binder.bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
-		
+////		binder.bind(IContainer.Manager.class).to(ProjectDescriptionBasedContainerManager.class);
+//		
 		DEBUG.OUT("Initialization of GAML XText runtime module finished");
 	}
+	
 //
 //	@Override
 //	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
@@ -162,7 +164,7 @@ public class GamlRuntimeModule extends msi.gama.lang.gaml.AbstractGamlRuntimeMod
 //
 	@Override
 	public Class<? extends XtextResource> bindXtextResource() {
-		return GamlResource.class;
+		return GamlResource2.class;
 	}
 //
 //	// @Override

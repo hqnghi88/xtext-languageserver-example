@@ -176,15 +176,15 @@ public abstract class AbstractGamlRuntimeModule extends DefaultRuntimeModule {
 		return ResourceSetBasedAllContainersStateProvider.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-	public void configureIResourceDescriptions(Binder binder) {
-		binder.bind(IResourceDescriptions.class).to(ResourceSetBasedResourceDescriptions.class);
-	}
+//	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+//	public void configureIResourceDescriptions(Binder binder) {
+//		binder.bind(IResourceDescriptions.class).to(ResourceSetBasedResourceDescriptions.class);
+//	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
-	public void configureIResourceDescriptionsPersisted(Binder binder) {
-		binder.bind(IResourceDescriptions.class).annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(ResourceSetBasedResourceDescriptions.class);
-	}
+//	// contributed by org.eclipse.xtext.xtext.generator.builder.BuilderIntegrationFragment2
+//	public void configureIResourceDescriptionsPersisted(Binder binder) {
+//		binder.bind(IResourceDescriptions.class).annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(ResourceSetBasedResourceDescriptions.class);
+//	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
 	public Class<? extends IGenerator2> bindIGenerator2() {

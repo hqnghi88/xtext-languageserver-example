@@ -14,7 +14,8 @@ Require-Bundle: msi.gama.core,
  org.eclipse.xtext.ide,
  org.eclipse.lsp4j.jsonrpc,
  org.eclipse.lsp4j,
- com.google.gson;bundle-version="2.9.1"
+ com.google.gson,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.29.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: 
  msi.gama.headless.core,
