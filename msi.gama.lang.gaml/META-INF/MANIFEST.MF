@@ -21,11 +21,14 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.lsp4j.jsonrpc;bundle-version="0.19.0",
  com.google.gson;bundle-version="2.9.1",
  org.aopalliance;bundle-version="1.0.0"
-Export-Package: msi.gama.lang.gaml,
+Export-Package: msi.gama.lang,
+ msi.gama.lang.gaml,
  msi.gama.lang.gaml.documentation,
  msi.gama.lang.gaml.expression,
  msi.gama.lang.gaml.formatting,
  msi.gama.lang.gaml.gaml,
+ msi.gama.lang.gaml.gaml.impl,
+ msi.gama.lang.gaml.gaml.util,
  msi.gama.lang.gaml.generator,
  msi.gama.lang.gaml.indexer,
  msi.gama.lang.gaml.linking,
@@ -38,9 +41,7 @@ Export-Package: msi.gama.lang.gaml,
  msi.gama.lang.gaml.serializer,
  msi.gama.lang.gaml.services,
  msi.gama.lang.gaml.statements,
- msi.gama.lang.gaml.validation,
- msi.gama.lang.gaml.gaml.impl,
- msi.gama.lang.gaml.gaml.util
+ msi.gama.lang.gaml.validation
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: msi.gama.lang.gaml
 Bundle-ActivationPolicy: lazy

@@ -75,7 +75,7 @@ experiment main type: gui  {
 	parameter 'Speed of Agents' var: speed_of_agents min: 0.1 <- 100.0 ;
 
 	output {
-		display Circle  {
+		display Circle {
 			species cell;
 		}
 	}
